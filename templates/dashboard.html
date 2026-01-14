@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Bienvenido, {{ user.username }}</h2>
+    <h3>Tus Reservas Activas</h3>
+    {% if reservations %}
+        <table>
+            <tr>
+                <th>Servicio</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+            </tr>
+            {% for res in reservations %}
+            <tr>
+                <td>{{ res.service.name }}</td>
+                <td>{{ res.date }}</td>
+                <td>{{ res.time_slot }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No tienes reservas. <a href="{{ url_for('book') }}">¡Crea una ahora!</a></p>
+    {% endif %}
+{% endblock %}
